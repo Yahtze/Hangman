@@ -12,8 +12,10 @@ objectWord = RandomWords()
 guessWord = objectWord.get_random_word()
 guessWord = guessWord.upper()
 displayWord = '_'*len(guessWord)
-displayWordList = [*displayWord]
+displayWordList = list(displayWord)
+#displayWordList[1] = '2' #This Works
 print("This Is The Word To Be Guessed: " + displayWord)
+print(guessWord)
 while(attempts!=0):
     userGuess = input("Enter Guess: ").upper()
     if (not userGuess.isalpha()):
@@ -21,11 +23,13 @@ while(attempts!=0):
     elif userGuess in guessWord:
         for i in range(len(guessWord)):
             if (guessWord[i]==userGuess):
-                displayWordList[i]==userGuess
-        print(displayWordList)
+                displayWordList[i]=userGuess #Here
+                print(displayWordList[i])
+        print(''.join(displayWordList))
     else:
         print("Input Not In Word. Try Again")
         attempts-=1
-
-#Every Instance Of The Letter Needs To Be Filled
-#Not Printing The Fulfilled Characters
+    if (''.join(displayWordList)==guessWord):
+        print("Guessed Word!")
+        exit()
+print("Word Not Guessed. Try Again")
